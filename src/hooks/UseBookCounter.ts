@@ -16,27 +16,27 @@ const numberToBook = (val: number):string => {
   return rawStr;
 }
 
-export const UseBookCounter = ():[string, ()=>void, ()=>void] => {
+export const UseBookCounter = ():[string, (amount: number)=>void, (amount: number)=>void] => {
 
   const initialState = "001";
 
-  function reducer(state: string,action: string): string {
+  function reducer(state: string,action: {type: string, amount: number}): string {
     let newState: string;
 
-    switch(action) {
+    switch(action.type) {
       case "increment":
-        newState = numberToBook(parseInt(state) + 1);
+        newState = numberToBook(parseInt(state) + action.amount);
         break;
       case "decrement":
-        newState = numberToBook(parseInt(state) - 1);
+        newState = numberToBook(parseInt(state) - action.amount);
         break;
       default:
-        throw new Error(`Action ${action} not handled.`)
+        throw new Error(`Action ${action.type} not handled.`)
     }
 
     return newState;
   }
 
   const [state, dispatch] = useReducer(reducer, initialState);
-  return [state, () => dispatch("increment"), () => dispatch("decrement")]
+  return [state, (amount: number) => dispatch({type: "increment", amount}), (amount:number) => dispatch({type: "decrement",amount})]
 }

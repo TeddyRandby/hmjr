@@ -6,6 +6,7 @@ import {bookNumberVar} from "../cache"
 export const Entries = () => {
 
   const book = useReactiveVar(bookNumberVar);
+
   const {data, loading, error } = 
   useQuery(GET_ENTRIES_BY_BOOK,{ 
     variables: {
