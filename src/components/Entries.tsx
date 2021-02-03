@@ -1,7 +1,9 @@
 import React from "react"
 import {useQuery, useReactiveVar} from "@apollo/client"
+import {VStack} from "@chakra-ui/react";
 import {GET_ENTRIES_BY_BOOK} from "../queries/Entries"
 import {bookNumberVar} from "../cache"
+import {Entry} from "./Entry"
 
 export const Entries = () => {
 
@@ -17,5 +19,6 @@ export const Entries = () => {
   if (error || loading)
     return <div>loading or error </div>
 
-  return <div>{data?.entriesByBook.map((entry:any, index: number)=><div key={index + entry.header}>{entry.book} : {entry.header}</div>)}</div>
+  return<VStack>{data.entriesByBook.map((entry:any)=><Entry entry={entry}/>)}</VStack> 
+  
 }

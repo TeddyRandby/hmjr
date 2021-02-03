@@ -6,6 +6,13 @@ export const GET_ENTRIES_BY_BOOK = gql`
       book
       header
       content
+      dates {
+        day
+        month
+        year
+        stringified
+        content
+      }
     }
   }
 `;

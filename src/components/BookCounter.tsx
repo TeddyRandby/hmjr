@@ -1,5 +1,5 @@
 import React from "react"
-import {Box, Button, ButtonGroup, Input } from "@chakra-ui/react"
+import {Box, Button, ButtonGroup } from "@chakra-ui/react"
 import {UseBookCounter} from "../hooks/UseBookCounter"
 import {bookNumberVar} from "../cache";
 
