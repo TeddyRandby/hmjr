@@ -1,22 +1,22 @@
 import React from "react"
 import {Box, Button, ButtonGroup } from "@chakra-ui/react"
-import {UseCounter, validateBook} from "../hooks/UseCounter"
-import {bookNumberVar} from "../cache";
+import {UseCounter, validateEntryIndex} from "../hooks/UseCounter"
+import {entryIndexVar} from "../cache";
 
-export const BookCounter = () => {
+export const EntryCounter = () => {
 
-  const [book, increment, decrement, set] = UseCounter(1);
+  const [entry, increment, decrement, set] = UseCounter(0);
 
-  const validated = validateBook(book);
+  const validated = validateEntryIndex(entry);
 
-  bookNumberVar(validated);
+  entryIndexVar(validated);
 
   return <Box p={4}>
     <ButtonGroup>
       <Button colorScheme="red" onClick={()=>decrement(100)}>-100</Button>
       <Button colorScheme="red" onClick={()=>decrement(10)}>-10</Button>
       <Button colorScheme="red" onClick={()=>decrement(1)}>-1</Button>
-      <Button colorScheme="gray" disabled>Volume {book}</Button>
+      <Button colorScheme="gray" disabled>Entry {entry}</Button>
       <Button colorScheme="blue" onClick={()=>increment(1)}>+1</Button>
       <Button colorScheme="blue" onClick={()=>increment(10)}>+10</Button>
       <Button colorScheme="blue" onClick={()=>increment(100)}>+100</Button>
