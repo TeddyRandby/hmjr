@@ -5,7 +5,7 @@ import {entryIndexVar} from "../cache";
 
 export const EntryCounter = () => {
 
-  const [entry, increment, decrement, set] = UseCounter(0);
+  const [entry, increment, decrement] = UseCounter(0);
 
   const validated = validateEntryIndex(entry);
 

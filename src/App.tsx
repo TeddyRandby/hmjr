@@ -16,7 +16,9 @@ export const App = () => (
     <ApolloProvider client={client}>
       <Center>
         <Box>
-          <BookCounter/>
+          <Center>
+            <BookCounter/>
+          </Center>
           <Center>
             <EntryCounter/>
           </Center>

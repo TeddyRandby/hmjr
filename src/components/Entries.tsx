@@ -1,7 +1,7 @@
 import React from "react"
 import {useQuery, useReactiveVar} from "@apollo/client"
 import {GET_ENTRIES_BY_BOOK} from "../queries/Entries"
-import {bookNumberVar, entryIndexVar} from "../cache"
+import {bookNumberVar, entryIndexVar, currentEntryVar} from "../cache"
 import {Entry} from "./Entry"
 
 export const Entries = () => {
@@ -30,7 +30,9 @@ export const Entries = () => {
     return 0;
   })
 
+  currentEntryVar(entries[entryIndex])
 
-  return <Entry entry={entries[entryIndex]}/>
+
+  return <Entry/>
   
 }

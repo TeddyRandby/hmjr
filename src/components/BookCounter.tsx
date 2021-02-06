@@ -5,7 +5,7 @@ import {bookNumberVar} from "../cache";
 
 export const BookCounter = () => {
 
-  const [book, increment, decrement, set] = UseCounter(1);
+  const [book, increment, decrement] = UseCounter(1);
 
   const validated = validateBook(book);
 
