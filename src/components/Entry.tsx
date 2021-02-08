@@ -64,7 +64,7 @@ const doUpdate = () => {
     header: header,
     content: content,
     dates: dates.map(date=>({day: parseInt(date.day), month: parseInt(date.month), year: parseInt(date.year), content: date.content, stringified: date.stringified})),
-    indexes: indexes 
+    indexes: indexes.map(index=>({book: index.book, page: index.page, content: index.content}))
   }}})
 
   currentEntryVar({
