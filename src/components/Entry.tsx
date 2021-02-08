@@ -9,19 +9,20 @@ import {UPDATE_ENTRY} from "../queries/Entries";
 export const Entry = () => {
   const [updateEntry] = useMutation(UPDATE_ENTRY);
 
-  const entry = useReactiveVar(currentEntryVar)
-  const changedHeader = useReactiveVar(changedHeaderVar);
-  const changedContent = useReactiveVar(changedContentVar);
-  const changedDates = useReactiveVar(changedDatesVar);
-  const changedIndexes = useReactiveVar(changedIndexesVar);
+const entry = useReactiveVar(currentEntryVar)
+const changedHeader = useReactiveVar(changedHeaderVar);
+const changedContent = useReactiveVar(changedContentVar);
+const changedDates = useReactiveVar(changedDatesVar);
+const changedIndexes = useReactiveVar(changedIndexesVar);
 
-  const header = changedHeader===undefined?entry.header:changedHeader;
-  const content = changedContent===undefined?entry.content:changedContent;
-  const dates = changedDates===undefined?entry.dates:changedDates;
-  const indexes = changedIndexes===undefined?entry.indexes:changedIndexes;
 
 if (!entry)
   return <Box>No entry found</Box>
+
+const header = changedHeader===undefined?entry.header:changedHeader;
+const content = changedContent===undefined?entry.content:changedContent;
+const dates = changedDates===undefined?entry.dates:changedDates;
+const indexes = changedIndexes===undefined?entry.indexes:changedIndexes;
 
 const addDate= () => {
   const newDates =  [...dates,{day: "0", month:"0", year:"0", content:"", stringified:""}];
