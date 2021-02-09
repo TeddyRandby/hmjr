@@ -117,7 +117,10 @@ export const Entry = (props: EntryProps) => {
     props.doDelete();
   }
 
-  return <Box p={4} d={"flex"} border={"3px solid gray"} key={entry.book + entry.header}>
+  const edited = changedHeader || changedContent || changedIndexes || changedDates
+  const color = edited ? "green" : "gray";
+
+  return <Box p={4} d={"flex"} border={"5px solid " + color} key={entry.book + entry.header}>
     <VStack p={2}>
       <Text>Entry</Text>
     <FormControl>
@@ -131,8 +134,8 @@ export const Entry = (props: EntryProps) => {
     <FormControl>
       <ButtonGroup>
         <Button onClick={doUpdate}>Update</Button>
-        <Button onClick={doDelete}>Delete</Button>
         <Button onClick={doReset}>Reset</Button>
+        <Button onClick={doDelete} colorScheme={"red"}>Delete</Button>
       </ButtonGroup>
     </FormControl>
     </VStack>
