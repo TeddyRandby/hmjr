@@ -30,3 +30,16 @@ export const UPDATE_ENTRY = gql`
     }
 }
 `
+
+export const DELETE_ENTRY = gql`
+  mutation ($id: String!) {
+    deleteEntry(id: $id)
+}
+`
+export const CREATE_ENTRY = gql`
+  mutation {
+    createEntry {
+      _id
+    }
+}
+`

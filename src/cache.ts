@@ -4,7 +4,7 @@ export const bookNumberVar = makeVar("");
 export const entriesVar = makeVar([]);
 export const entryIndexVar = makeVar(0);
 
-interface Date {
+export interface Date {
   day: string 
   month: string 
   year: string 
@@ -12,13 +12,13 @@ interface Date {
   stringified: string
 }
 
-interface Index {
+export interface Index {
   book: string
   page: string
   content: string
 }
 
-interface Entry {
+export interface Entry {
   _id: string
   book: string
   header: string
