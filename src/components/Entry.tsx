@@ -1,14 +1,14 @@
-import React from "react"
+import React, {useEffect} from "react"
 import {Date} from "./Date"
-import {Button, Box, Input, Textarea, FormControl, FormLabel, VStack, Text, ButtonGroup, HStack} from "@chakra-ui/react";
+import {Button, Box, Input, Textarea, FormControl, FormLabel, VStack, Text, ButtonGroup, HStack, Center} from "@chakra-ui/react";
 import {Index} from "./Index";
 import {useReactiveVar, useMutation} from "@apollo/client";
-import {currentEntryVar, changedHeaderVar, changedContentVar, changedDatesVar, changedIndexesVar} from "../cache";
+import {currentEntryVar, changedHeaderVar, changedContentVar, changedDatesVar, changedIndexesVar, bookNumberVar } from "../cache";
 import {UPDATE_ENTRY, DELETE_ENTRY, CREATE_ENTRY} from "../queries/Entries";
 
 interface EntryProps {
   doDelete: () => void;
-  doCreate: (id: string) => void;
+  doCreate: (id: string) => number;
   doUpdate: (entry: any) => void;
 }
 
@@ -18,15 +18,40 @@ export const Entry = (props: EntryProps) => {
   const [createEntry] = useMutation(CREATE_ENTRY);
 
   const entry = useReactiveVar(currentEntryVar)
+  const book = useReactiveVar(bookNumberVar)
   const changedHeader = useReactiveVar(changedHeaderVar);
   const changedContent = useReactiveVar(changedContentVar);
   const changedDates = useReactiveVar(changedDatesVar);
   const changedIndexes = useReactiveVar(changedIndexesVar);
 
+  const doReset = () => {
+    changedHeaderVar(undefined);
+    changedContentVar(undefined);
+    changedDatesVar(undefined);
+    changedIndexesVar(undefined);
+  }
 
-  if (!entry)
-    return <Box>No entry found</Box>
+  useEffect(()=>{
+    doReset();
+  },[book])
 
+  const doCreate = async () => {
+    console.log(book);
+    const {data} = await createEntry({variables: {book}});
+    if (data)
+      props.doCreate(data.createEntry._id);
+  }
+
+  if (!entry){
+    return <Box>
+      <Center p={10}>
+      <HStack>
+      <Text>No entry found.</Text>
+      <Button onClick={doCreate}>Create one</Button>
+        </HStack>
+        </Center>
+  </Box>
+}
   const header = changedHeader===undefined?entry.header:changedHeader;
   const content = changedContent===undefined?entry.content:changedContent;
   const dates = changedDates===undefined?entry.dates:changedDates;
@@ -66,11 +91,6 @@ export const Entry = (props: EntryProps) => {
     changedIndexesVar(newIndexes);
   }
 
-  const doCreate = async () => {
-    const {data} = await createEntry();
-    if (data)
-      props.doCreate(data.createEntry._id);
-  }
 
 
   const doUpdate = () => {
@@ -93,15 +113,8 @@ export const Entry = (props: EntryProps) => {
   }
 
   const doDelete = () => {
-    deleteEntry({variables: { _id: entry._id }})
+    deleteEntry({variables: { id: entry._id }})
     props.doDelete();
-  }
-
-  const doReset = () => {
-    changedHeaderVar(undefined);
-    changedContentVar(undefined);
-    changedDatesVar(undefined);
-    changedIndexesVar(undefined);
   }
 
   return <Box p={4} d={"flex"} border={"3px solid gray"} key={entry.book + entry.header}>
@@ -119,7 +132,6 @@ export const Entry = (props: EntryProps) => {
       <ButtonGroup>
         <Button onClick={doUpdate}>Update</Button>
         <Button onClick={doDelete}>Delete</Button>
-        <Button onClick={doCreate}>Create</Button>
         <Button onClick={doReset}>Reset</Button>
       </ButtonGroup>
     </FormControl>

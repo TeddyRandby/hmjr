@@ -37,8 +37,8 @@ export const DELETE_ENTRY = gql`
 }
 `
 export const CREATE_ENTRY = gql`
-  mutation {
-    createEntry {
+  mutation ($book: String!){
+    createEntry (book: $book){
       _id
     }
 }
