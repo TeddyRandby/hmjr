@@ -14,7 +14,7 @@ export const Entries = () => {
   const {data, loading, error } = 
   useQuery(GET_ENTRIES_BY_BOOK,{ 
     variables: {
-    "bookNumber": book
+    "bookNumber": [book]
     }
   });
 
