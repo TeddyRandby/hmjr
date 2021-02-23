@@ -13,12 +13,12 @@ export const Date = (props: DateProps) => {
 
 return <Box p={4} border={"3px solid gray"} key={props.at}>
   <FormControl>
-    <FormLabel>Day</FormLabel>
-    <Input type="number" value={date.day} onChange={(event)=>props.update({...date, day: event.target.value})}/>
-  </FormControl>
-  <FormControl>
     <FormLabel>Month</FormLabel>
     <Input value={date.month} onChange={(event)=>props.update({...date, month: event.target.value})}/>
+  </FormControl>
+  <FormControl>
+    <FormLabel>Day</FormLabel>
+    <Input type="number" value={date.day} onChange={(event)=>props.update({...date, day: event.target.value})}/>
   </FormControl>
   <FormControl>
     <FormLabel>Year</FormLabel>
