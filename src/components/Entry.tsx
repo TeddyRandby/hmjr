@@ -1,5 +1,6 @@
 import React, {useEffect} from "react"
 import {Date} from "./Date"
+import {List} from "./List"
 import {Button, Box, Input, Textarea, FormControl, FormLabel, VStack, Text, ButtonGroup, HStack, Center} from "@chakra-ui/react";
 import {Index} from "./Index";
 import {useReactiveVar, useMutation} from "@apollo/client";
@@ -137,6 +138,18 @@ export const Entry = (props: EntryProps) => {
         <Button onClick={doReset}>Reset</Button>
         <Button onClick={doDelete} colorScheme={"red"}>Delete</Button>
       </ButtonGroup>
+    </FormControl>
+    <FormControl>
+        <FormLabel>Locations</FormLabel>
+        <List data={entry.locations}/>
+    </FormControl>
+    <FormControl>
+        <FormLabel>Organizations</FormLabel>
+        <List data={entry.organizations}/>
+    </FormControl>
+    <FormControl>
+        <FormLabel>People</FormLabel>
+        <List data={entry.people}/>
     </FormControl>
     </VStack>
     <VStack p={2}>

@@ -25,6 +25,9 @@ export interface Entry {
   content: string
   dates: Date[] 
   indexes: Index[]
+  locations: string[],
+  people: string[],
+  organizations: string[]
 }
 
 export const currentEntryVar = makeVar<Entry>({
@@ -33,7 +36,10 @@ export const currentEntryVar = makeVar<Entry>({
   content: "",
   book: "",
   dates: [],
-  indexes: []
+  indexes: [],
+  locations: [],
+  people: [],
+  organizations: [],
 });
 
 export const changedHeaderVar = makeVar<string | undefined>(undefined);

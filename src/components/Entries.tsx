@@ -45,7 +45,7 @@ export const Entries = () => {
 
   const doCreate = (id: string) => {
     const index = entries.length;
-    setEntries([...entries, {_id: id, header: "", content: "", book: "", dates: [], indexes: []}]);
+    setEntries([...entries, {_id: id, header: "", content: "", book: "", dates: [], indexes: [], locations: [], people: [], organizations: []}]);
     return index;
   }
 
