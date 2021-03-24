@@ -140,16 +140,31 @@ export const Entry = (props: EntryProps) => {
       </ButtonGroup>
     </FormControl>
     <FormControl>
+    {entry.locations?.length > 0 ?
+      <div>
         <FormLabel>Locations</FormLabel>
         <List data={entry.locations}/>
+        </div>
+          : null
+    }
     </FormControl>
     <FormControl>
+    {entry.organizations?.length > 0 ?
+      <div>
         <FormLabel>Organizations</FormLabel>
         <List data={entry.organizations}/>
+        </div>
+          : null
+    }
     </FormControl>
     <FormControl>
+    {entry.people?.length > 0 ?
+      <div>
         <FormLabel>People</FormLabel>
         <List data={entry.people}/>
+        </div>
+          : null
+    }
     </FormControl>
     </VStack>
     <VStack p={2}>
