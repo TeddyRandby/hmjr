@@ -98,7 +98,7 @@ export const Entry = (props: EntryProps) => {
       header: header,
       content: content,
       dates: dates.map(date=>({day: parseInt(date.day), month: parseInt(date.month), year: parseInt(date.year), content: date.content, stringified: date.stringified})),
-      indexes: indexes.map(index=>({book: index.book, page: index.page, content: index.content}))
+      indexes: indexes.map(index=>({book: index.book, page: parseInt(index.page.toString()), content: index.content}))
     }}})
 
     props.doUpdate({
@@ -171,7 +171,7 @@ export const Entry = (props: EntryProps) => {
       {dates.map((date:any, i: number)=><Date date={date} at={i} delete={()=>removeDate(i)} update={updateDate(i)}/>)}
     </VStack>
     <VStack p={2}>
-      <Text>Book/Pages <Button onClick={addIndex} colorScheme={"blue"}>+</Button></Text>
+      <Text>Book/Pages<Button onClick={addIndex} colorScheme={"blue"}>+</Button></Text>
       {indexes.map((index:any, i: number)=><Index index={index} at={i} delete={()=>removeIndex(i)} update={updateIndex(i)}/>)}
     </VStack>
   </Box>

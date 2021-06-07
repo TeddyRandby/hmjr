@@ -19,10 +19,10 @@ export const GET_ENTRIES_BY_BOOK = gql`
         page
         content
       }
-    	locations
-			people
-			organizations
-    }
+   	  locations
+	  people
+      organizations
+      }
   }
 `;
 
