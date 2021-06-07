@@ -6,7 +6,7 @@ import {Entry} from "./Entry"
 
 export const Entries = () => {
 
-  const book = useReactiveVar(bookNumberVar);
+ const book = useReactiveVar(bookNumberVar);
   const entryIndex = useReactiveVar(entryIndexVar);
 
   const [entries, setEntries] = useState<any[]>([]);
@@ -15,8 +15,7 @@ export const Entries = () => {
   useQuery(GET_ENTRIES_BY_BOOK,{ 
     variables: {
     "bookNumber": [book]
-    }
-  });
+    } });
 
 
   useEffect(()=>{

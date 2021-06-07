@@ -3,8 +3,7 @@ import {Date} from "./Date"
 import {List} from "./List"
 import {Button, Box, Input, Textarea, FormControl, FormLabel, VStack, Text, ButtonGroup, HStack, Center} from "@chakra-ui/react";
 import {Index} from "./Index";
-import {useReactiveVar, useMutation} from "@apollo/client";
-import {currentEntryVar, changedHeaderVar, changedContentVar, changedDatesVar, changedIndexesVar, bookNumberVar } from "../cache";
+import {useReactiveVar, useMutation} from "@apollo/client"; import {currentEntryVar, changedHeaderVar, changedContentVar, changedDatesVar, changedIndexesVar, bookNumberVar } from "../cache";
 import {UPDATE_ENTRY, DELETE_ENTRY, CREATE_ENTRY} from "../queries/Entries";
 
 interface EntryProps {
@@ -172,7 +171,7 @@ export const Entry = (props: EntryProps) => {
       {dates.map((date:any, i: number)=><Date date={date} at={i} delete={()=>removeDate(i)} update={updateDate(i)}/>)}
     </VStack>
     <VStack p={2}>
-      <Text>Indexes <Button onClick={addIndex} colorScheme={"blue"}>+</Button></Text>
+      <Text>Book/Pages <Button onClick={addIndex} colorScheme={"blue"}>+</Button></Text>
       {indexes.map((index:any, i: number)=><Index index={index} at={i} delete={()=>removeIndex(i)} update={updateIndex(i)}/>)}
     </VStack>
   </Box>
