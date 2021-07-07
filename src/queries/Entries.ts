@@ -28,9 +28,7 @@ export const GET_ENTRIES_BY_BOOK = gql`
 
 export const UPDATE_ENTRY = gql`
   mutation ($id: String!, $updated:EntryInput!) {
-    updateEntry(id: $id, entry: $updated) {
-      header
-    }
+    updateEntry(id: $id, entry: $updated)
 }
 `
 
